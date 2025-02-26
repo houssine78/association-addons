@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+    <t t-inherit="mail.Chatter" t-inherit-mode="extension">
+        <xpath expr="//*[contains(@class, 'o-mail-Chatter-activity')]" position="after">
+            <button class="o-mail-Chatter-upload-url btn btn-secondary text-nowrap my-2 ml4" type="button" t-on-click="_onClickUrlAdd">
+                <i class="fa fa-link"></i>
+                Add Attachment from URL
+            </button>
+        </xpath>
+    </t>
+</template>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="upload_attachment_form_url.UrlDialog" id="UrlDialogModal">
+        <Dialog size="'md'" title="'Add Attachment From URL'">
+            <div class="container-fluid">
+                <div class="row mb-3">
+                    <label class="col-form-label col-sm-auto">URL</label>
+                    <div class="col-sm">
+                        <input type="url" class="form-control" name="image_url" t-ref="url"/>
+                    </div>
+                </div>
+            </div>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary" t-on-click="onClickConfirm" >Capture</button>
+                <button class="btn btn-secondary" t-on-click="props.close">Cancel</button>
+            </t>
+        </Dialog>
+    </t>
+
+</templates>
