@@ -1,0 +1,26 @@
+<odoo>
+	<record id="view_create_internal_user_wizard_form" model="ir.ui.view">
+	    <field name="name">create.internal.user.wizard.form</field>
+	    <field name="model">create.internal.user.wizard</field>
+	    <field name="arch" type="xml">
+	        <form string="Create Internal Users">
+	            <group>
+	                <field name="contact_ids" widget="many2many_tags"/>
+	            </group>
+	            <footer>
+	                <button name="create_internal_users" string="Create Users" type="object" class="btn-primary"/>
+	                <button string="Cancel" class="btn-secondary" special="cancel"/>
+	            </footer>
+	        </form>
+	    </field>
+	</record>
+
+    <record id="action_create_internal_user" model="ir.actions.act_window">
+	    <field name="name">Create Internal Users</field>
+	    <field name="res_model">create.internal.user.wizard</field>
+	    <field name="view_mode">form</field>
+	    <field name="target">new</field>
+	    <field name="binding_model_id" ref="base.model_res_partner"/>
+	    <!-- <field name="binding_view_types">list</field> -->
+	</record>
+</odoo>
