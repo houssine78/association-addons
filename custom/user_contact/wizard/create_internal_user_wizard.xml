@@ -6,6 +6,7 @@
 	        <form string="Create Internal Users">
 	            <group>
 	                <field name="contact_ids" widget="many2many_tags"/>
+	                <field name="create_employee" />
 	            </group>
 	            <footer>
 	                <button name="create_internal_users" string="Create Users" type="object" class="btn-primary"/>

@@ -8,7 +8,8 @@
     "author": "Open Architects Consulting SRL, Houssine Bakkali",
     "license": "AGPL-3",
     "depends": [
-        "contacts"
+        "contacts",
+        "hr"
     ],
     "data": [
         "security/ir.model.access.csv",

@@ -33,3 +33,7 @@ class CreateInternalUserWizard(models.TransientModel):
                 'groups_id': [(5),(4, group_user.id)]
             }
             user = user_model.create(user_values)
+            if self.create_employee:
+                user.action_create_employee()
+
+        return True
