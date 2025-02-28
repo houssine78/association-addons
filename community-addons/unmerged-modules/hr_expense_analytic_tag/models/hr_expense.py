@@ -12,8 +12,9 @@ class HrExpense(models.Model):
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
 
-    def _prepare_move_line_vals(self):
-        vals = super()._prepare_move_line_vals()
+    def _prepare_move_lines_vals(self):
+        vals = super()._prepare_move_lines_vals()
         if self.analytic_tag_ids:
             vals.update({"analytic_tag_ids": [(6, 0, self.analytic_tag_ids.ids)]})
         return vals
+
