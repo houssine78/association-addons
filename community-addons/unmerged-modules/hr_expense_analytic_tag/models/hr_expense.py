@@ -16,7 +16,5 @@ class HrExpense(models.Model):
         vals = super()._prepare_move_lines_vals()
         if self.analytic_tag_ids:
             vals.update({"analytic_tag_ids": [(6, 0, self.analytic_tag_ids.ids)]})
-        if self.analytic_distribution:
-            vals.update({"analytic_distribution": self.analytic_distribution})
         return vals
 
