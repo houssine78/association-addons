@@ -24,7 +24,12 @@ class OnlineBankStatementProviderStripe(models.Model):
             "{source.id} {source.payment_method_details.type}"
         )
     )
-    stripe_note = fields.Char()
+    stripe_note = fields.Char(
+        default=(
+            "{source.billing_details.email} {source.billing_details.name} "
+            "{source.description}"
+            )
+    )
     stripe_reference = fields.Char(default="{source.metadata.invoice_number}")
     stripe_fee_label = fields.Char(
         default=(
