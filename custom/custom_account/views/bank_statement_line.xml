@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem
+        id="menu_accounting_statement_line_bank"
+        action="account_statement_base.account_bank_statement_line_action"
+        parent="account_usability.menu_accounting_bank_and_cash"
+        sequence="15"
+        groups="base.group_no_one"
+    />
+</odoo>
