@@ -13,7 +13,9 @@
         "account_usability"
     ],
     "data": [
+        "security/ir.model.access.csv",
         "views/bank_statement_line.xml",
+        "wizard/set_analytic_tag_wizard.xml"
     ],
     "installable": True,
 }
