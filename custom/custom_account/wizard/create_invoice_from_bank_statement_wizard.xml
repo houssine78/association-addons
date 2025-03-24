@@ -1,0 +1,28 @@
+<odoo>
+	<record id="view_invoice_from_statement_line_wizard_form" model="ir.ui.view">
+	    <field name="name">invoice.from.statement.line.wizard.form</field>
+	    <field name="model">invoice.from.statement.line</field>
+	    <field name="arch" type="xml">
+	        <form string="Create Customer Invoices">
+	            <group>
+                    <field name="invoice_date" />
+                    <field name="product_id" />            
+	                <field name="account_analytic_tag_id" />
+	                <field name="bank_statement_line_ids" widget="many2many_tags" readonly="True"/>
+	            </group>
+	            <footer>
+	                <button name="create_transition_model" string="Create" type="object" class="btn-primary"/>
+	                <button string="Cancel" class="btn-secondary" special="cancel"/>
+	            </footer>
+	        </form>
+	    </field>
+	</record>
+
+    <record id="action_invoice_from_statement_line_wizard" model="ir.actions.act_window">
+	    <field name="name">Create invoice from statement line</field>
+	    <field name="res_model">invoice.from.statement.line</field>
+	    <field name="view_mode">form</field>
+	    <field name="target">new</field>
+	    <field name="binding_model_id" ref="account.model_account_bank_statement_line"/>
+	</record>
+</odoo>

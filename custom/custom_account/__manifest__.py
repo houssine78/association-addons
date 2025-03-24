@@ -15,7 +15,9 @@
     "data": [
         "security/ir.model.access.csv",
         "views/bank_statement_line.xml",
-        "wizard/set_analytic_tag_wizard.xml"
+        "views/statement_line_to_invoice_views.xml",
+        "wizard/set_analytic_tag_wizard.xml",
+        "wizard/create_invoice_from_bank_statement_wizard.xml"
     ],
     "installable": True,
 }

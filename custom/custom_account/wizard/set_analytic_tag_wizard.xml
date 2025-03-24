@@ -3,7 +3,7 @@
 	    <field name="name">set.analytic.tag.wizard.form</field>
 	    <field name="model">set.analytic.tag.wizard</field>
 	    <field name="arch" type="xml">
-	        <form string="Create Internal Users">
+	        <form string="Set Analytic Tag">
 	            <group>
 	                <field name="account_analytic_tag" />
 	                <field name="account_move_ids" widget="many2many_tags"/>

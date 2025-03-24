@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_set_analytic_tag_wizard_manager,set.analytic.tag.wizard.manager,model_set_analytic_tag_wizard,base.group_erp_manager,1,1,1,1
+access_invoice_from_statement_line_wizard,invoice.from.statement.line.wizard.manager,model_invoice_from_statement_line,base.group_erp_manager,1,1,1,1
+access_statement_line_to_invoice_manager,statement.line.to.invoice.manager,model_statement_line_to_invoice,base.group_erp_manager,1,1,1,1
+access_statement_line_to_invoice_user,statement.line.to.invoice.user,model_statement_line_to_invoice,base.group_user,1,1,1,0
