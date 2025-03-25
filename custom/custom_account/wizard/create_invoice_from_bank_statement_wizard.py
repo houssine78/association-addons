@@ -10,7 +10,7 @@ class InvoiceFromBankStatementLineWizard(models.TransientModel):
         bank_statement_line_ids = self.env.context.get('active_ids', [])
         bank_statement_lines = bankStatementLine.browse(bank_statement_line_ids)
 
-        return [Command.link(bank_statement_lines.id) for bank_statement_line in bank_statement_lines]
+        return [Command.link(bank_statement_line.id) for bank_statement_line in bank_statement_lines]
 
     invoice_date = fields.Date()
     product_id = fields.Many2one(
