@@ -1,4 +1,5 @@
 from odoo import fields, models
+from odoo.exceptions import UserError
 
 
 class StatementLineToInvoice(models.Model):
@@ -11,7 +12,6 @@ class StatementLineToInvoice(models.Model):
     name = fields.Char()
     partner_id = fields.Many2one(
         "res.partner",
-        required=True
     )
     invoice_date = fields.Date()
     product_id = fields.Many2one(
@@ -23,10 +23,6 @@ class StatementLineToInvoice(models.Model):
         related='bank_statement_line_id.currency_id',
     )
     amount = fields.Monetary()
-    grant = fields.Boolean()
-    grant_product = fields.Many2one(
-        "product.product"
-    )
     bank_statement_line_id = fields.Many2one(
         "account.bank.statement.line",
         string="Statement line",
@@ -49,6 +45,10 @@ class StatementLineToInvoice(models.Model):
 
     def action_create_invoice(self):
         self.ensure_one()
+
+        if not self.partner_id:
+            raise UserError(_('this line has no partner'))
+
         accountMove = self.env['account.move']
         moveLine = self.env['account.move.line']
 
@@ -70,3 +70,27 @@ class StatementLineToInvoice(models.Model):
 
         line = moveLine.create(line_vals)    
         self.write({"state": "invoiced", "invoice_id": move.id})
+
+    def action_assign_partner(self):
+        self.ensure_one()
+        
+        resPartner = self.env['res.partner']
+        partners = resPartner.search([('email', '=', self.email)])
+        
+        partner_id = False
+        if not partners:
+            partner_vals = {
+            'email': self.email,
+            'name': self.name,
+            'is_company': False
+        }
+            partner_id = resPartner.create(partner_vals)
+
+        elif len(partners) == 1:
+            partner_id = partners
+        else:
+            partner_id = partners.filtered(lambda r: r.is_company)
+            if not partner_id:
+                partner_id = partners
+
+        self.partner_id = partner_id     

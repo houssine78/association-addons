@@ -47,12 +47,7 @@ class InvoiceFromBankStatementLineWizard(models.TransientModel):
             partner_id = False
             if not partners:
                 # create contact
-                partner_vals = {
-                    'email': email,
-                    'name': name,
-                    'is_company': False
-                }
-                partner_id = resPartner.create(partner_vals)
+                print()
             elif len(partners) == 1:
                 partner_id = partners
             else:
@@ -72,4 +67,5 @@ class InvoiceFromBankStatementLineWizard(models.TransientModel):
                 'state': 'draft',
             }
             stat_line_invoice = statLineInvoice.create(vals)
-            stat_line_invoice.action_create_invoice()
+            if partner_id:
+                stat_line_invoice.action_create_invoice()

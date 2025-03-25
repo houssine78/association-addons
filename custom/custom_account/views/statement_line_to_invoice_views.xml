@@ -7,21 +7,19 @@
             <form string="Category">
                 <header>
                     <button name="action_create_invoice" string="Create invoice" class="oe_highlight"
-                                type="object" groups="account.group_account_invoice"
-                                invisible="state != 'draft'"/>
+                            type="object" groups="account.group_account_invoice" invisible="state != 'draft'"/>
+                    <button name="action_assign_partner" string="Assign partner" type="object"
+                            groups="account.group_account_invoice" invisible="partner_id != False"/>
                      <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
                     <group>
-                        
                         <group>
-                            <field name="name"/>
+                            <field name="name" readonly="True"/>
                             <field name="email"/>
                             <field name="partner_id"/>
                             <field name="product_id"/>
                             <field name="amount"/>
-                            <field name="grant"/>
-                            <field name="grant_product"/>
                         </group>
                         <group>
                             <field name="invoice_date"/>
