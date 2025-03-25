@@ -58,7 +58,7 @@ class InvoiceFromBankStatementLineWizard(models.TransientModel):
             vals = {
                 'email': email,
                 'name': name,
-                'partner_id': partner_id.id,
+                'partner_id': partner_id.id if partner_id else False,
                 'invoice_date': self.invoice_date,
                 'product_id': self.product_id.id,
                 'amount': statement_line.amount,
@@ -66,6 +66,7 @@ class InvoiceFromBankStatementLineWizard(models.TransientModel):
                 'account_analytic_tag_id': self.account_analytic_tag_id.id,
                 'state': 'draft',
             }
+
             stat_line_invoice = statLineInvoice.create(vals)
             if partner_id:
                 stat_line_invoice.action_create_invoice()
