@@ -1,4 +1,4 @@
-from odoo import Command, models, fields
+from odoo import Command, models, fields, _
 import re
 
 class InvoiceFromBankStatementLineWizard(models.TransientModel):
