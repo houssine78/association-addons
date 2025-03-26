@@ -17,6 +17,10 @@ class InvoiceFromBankStatementLineWizard(models.TransientModel):
         "product.product",
         required=True
     )
+    journal_id = fields.Many2one(
+        'account.journal',
+        required=True
+    )
     bank_statement_line_ids = fields.Many2many(
         comodel_name="account.bank.statement.line",
         string="Statement lines",
@@ -61,6 +65,7 @@ class InvoiceFromBankStatementLineWizard(models.TransientModel):
                 'partner_id': partner_id.id if partner_id else False,
                 'invoice_date': self.invoice_date,
                 'product_id': self.product_id.id,
+                'journal_id': self.journal_id.id,
                 'amount': statement_line.amount,
                 'bank_statement_line_id': statement_line.id,
                 'account_analytic_tag_id': self.account_analytic_tag_id.id,

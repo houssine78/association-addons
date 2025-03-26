@@ -19,6 +19,7 @@
                             <field name="email"/>
                             <field name="partner_id"/>
                             <field name="product_id"/>
+                            <field name="journal_id" />
                             <field name="amount"/>
                         </group>
                         <group>
@@ -42,6 +43,7 @@
                 <field name="email"/>
                 <field name="partner_id"/>
                 <field name="product_id"/>
+                <field name="journal_id" />
                 <field name="amount"/>
                 <field name="invoice_date"/>
                 <field name="account_analytic_tag_id"/>

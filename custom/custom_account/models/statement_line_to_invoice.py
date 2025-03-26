@@ -18,6 +18,10 @@ class StatementLineToInvoice(models.Model):
         "product.product",
         required=True
     )
+    journal_id = fields.Many2one(
+        'account.journal',
+        required=True
+    )
     currency_id = fields.Many2one(
         comodel_name='res.currency',
         related='bank_statement_line_id.currency_id',
@@ -55,7 +59,8 @@ class StatementLineToInvoice(models.Model):
         move_vals = {
             "move_type": "out_invoice",
             "invoice_date": self.invoice_date,
-            "partner_id": self.partner_id.id
+            "partner_id": self.partner_id.id,
+            "journal_id": self.journal_id.id
         }
 
         move = accountMove.create(move_vals)
