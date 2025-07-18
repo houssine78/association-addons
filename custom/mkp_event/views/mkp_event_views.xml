@@ -1,0 +1,121 @@
+<odoo>
+    <record id="mkp_event_tree" model="ir.ui.view">
+        <field name="name">mkp.event.tree</field>
+        <field name="model">mkp.event</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="event_type"/>
+	            <field name="place"/>
+	            <field name="start_date"/>
+	            <field name="end_date"/>
+	            <field name="participation_fee"/>
+                <field name="staff_fee"/>
+                <field name="state"/>
+                <field name="company_currency_id" column_invisible="True"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="mkp_event_form" model="ir.ui.view">
+        <field name="name">mkp.event.form</field>
+        <field name="model">mkp.event</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+	               <div class="oe_title">
+	                   <h1>
+	                       <field name="name"/>
+	                   </h1>
+	               </div>    
+	               <group>
+	                    <group>
+	                        <field name="event_type"/>
+	                        <field name="place"/>
+	                        <field name="start_date"/>
+	                        <field name="end_date"/>
+	                        <field name="participation_max"/>
+	                        <field name="staff_max"/>
+	                    </group>
+	                    <group>
+	                        <field name="participation_product_id"/>
+	                        <field name="staff_product_id"/>
+	                        <field name="participation_fee"/>
+	                        <field name="staff_fee"/>
+	                        <field name="analytic_tag_ids" widget="many2many_tags"/>
+	                        <field name="company_currency_id" invisible="True"/>
+                        </group>
+	                </group>
+                    <notebook colspan="4">
+                        <page name="event_coordinator" string="Event Coordinator">
+                            <group>
+                                <group>
+                                   <field name="event_coordinator"/>
+                                   <field name="event_treasurer"/>
+                                   <field name="participant_coordinator"/>
+                                </group>
+                                <group>
+                                   <field name="staff_coordinator"/>
+                                   <field name="pis_coordinator"/>
+                                   <field name="event_leader_on_point"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="event_leader" string="Event Leaders">
+                            <field name="event_leader_ids" nolabel="1">
+                                <list>
+	                                <field name="name"/>
+	                                <field name="leadership"/>
+	                                <field name="staff_count"/>
+                                </list>
+                            </field>
+                        </page>
+	                    <page name="participant_subscription" string="Participant subscription">
+	                        <field name="participant_subscription" nolabel="1" context="{'default_subscription_type': 'participant'}">
+	                            <list>
+	                                <field name="partner_id"/>
+	                                <field name="subscription_type"/>
+	                                <field name="subscription_amount"/>
+	                                <field name="grant"/>
+	                                <field name="grant_amount"/>
+	                                <field name="amount_due"/>
+	                                <field name="state"/>
+	                                <field name="company_currency_id" column_invisible="True"/>
+	                            </list>
+	                        </field>
+	                    </page>
+	                    <page name="staff_subscription" string="Staff subscription">
+	                        <field name="staff_subscription" nolabel="1" context="{'default_subscription_type': 'staff'}">
+	                            <list>
+	                                <field name="partner_id"/>
+	                                <field name="subscription_type"/>
+	                                <field name="subscription_amount"/>
+	                                <field name="grant"/>
+	                                <field name="grant_amount"/>
+	                                <field name="amount_due"/>
+	                                <field name="state"/>
+	                                <field name="company_currency_id" column_invisible="True"/>
+	                            </list>
+	                        </field>
+	                    </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_mkp_event" model="ir.actions.act_window">
+	    <field name="name">MKP Events</field>
+	    <field name="res_model">mkp.event</field>
+	    <field name="view_mode">list,form</field>
+	    <field name="view_id" ref="mkp_event_tree"/>
+	    <field name="help" type="html">
+	      <p class="o_view_nocontent_smiling_face">
+	        Create a MKP Event
+	      </p>
+	    </field>
+	</record>
+    
+</odoo>

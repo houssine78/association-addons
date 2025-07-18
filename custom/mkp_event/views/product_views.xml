@@ -1,0 +1,26 @@
+<odoo>
+    <record id="mkp_event_product_form_view" model="ir.ui.view">
+        <field name="name">product.template.mkp.event.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="mkp_product"/>
+                <field name="product_event_type" invisible="mkp_product == False"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="mkp_event_product_template_action" model="ir.actions.act_window">
+        <field name="name">MKP Event Products</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="context">{'default_mkp_product': True}</field>
+        <field name="domain">[('mkp_product', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new MKP Event Product
+            </p>
+        </field>
+    </record>
+</odoo>

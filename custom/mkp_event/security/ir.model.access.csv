@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mkp_event_admin,mkp.event.admin,mkp_event.model_mkp_event,mkp_event.mkp_event_admin_group,1,1,1,1
+access_mkp_event_subscription_admin,mkp.event.subscription.admin,mkp_event.model_mkp_event_subscription,mkp_event.mkp_event_admin_group,1,1,1,1
+access_mkp_event_budget_admin,mkp.event.budget.admin,mkp_event.model_mkp_event_budget,mkp_event.mkp_event_admin_group,1,1,1,1
+access_mkp_event_budget_expense_config_admin,mkp.event.budget.expense.config.admin,mkp_event.model_mkp_event_budget_expense_config,mkp_event.mkp_event_admin_group,1,1,1,1

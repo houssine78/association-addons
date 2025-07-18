@@ -1,0 +1,28 @@
+<odoo>
+<!-- Top menu item -->
+    <menuitem name="MKP"
+        id="menu_mkp"
+        groups="base.group_user,mkp_event.mkp_event_admin_group"
+        web_icon="mkp_event,static/description/icon.png"
+        sequence="100">
+        <!--  <menuitem id="menu_mkp_dashboard" name="MKP Dashboard" action="open_mkp_dashboard_kanban" groups="mkp_event.mkp_event_admin_group" sequence="1"/>-->
+        <menuitem id="menu_mkp_event" name="MKP Event" sequence="2">
+            <menuitem id="menu_action_mkp_event" action="action_mkp_event" sequence="1"/>
+            <menuitem id="menu_action_mkp_event_subscritpion" action="action_mkp_event_subscription" sequence="2"/>
+            <menuitem id="menu_action_mkp_product" action="mkp_event_product_template_action" sequence="3"/>
+        </menuitem>
+        <menuitem id="menu_mkp_people" name="MKP People" sequence="3">
+            <menuitem id="menu_action_mkp_people" action="action_mkp_people" sequence="1"/>
+            <menuitem id="menu_action_mkp_leader" action="action_mkp_leader" sequence="2"/>
+        </menuitem>
+        <menuitem id="menu_mkp_finance" name="MKP Finances" sequence="4">
+            <menuitem id="menu_action_mkp_event_budget" action="action_mkp_event_budget" sequence="1"/>
+            <menuitem id="menu_action_mkp_event_out_invoices" action="action_move_out_invoice_mkp_event" sequence="2"/>
+            <menuitem id="menu_action_non_mkp_event_out_invoices" action="action_move_out_invoice_non_mkp_event" sequence="3"/>
+            <menuitem id="menu_action_hr_expense_sheet_mkp_event" action="action_hr_expense_sheet_mkp" sequence="4"/>
+        </menuitem>
+        <menuitem id="menu_mkp_config" name="Configuration" sequence="5">
+            <menuitem id="menu_action_mkp_event_budget_expense_config" action="action_mkp_event_budget_expense_config" sequence="1"/>
+        </menuitem>
+    </menuitem>
+</odoo>

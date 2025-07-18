@@ -1,0 +1,58 @@
+<odoo noupdate="1">
+    <record id="mkp_expense_config_1" model="mkp.event.budget.expense.config">
+        <field name="name">Salary</field>
+        <field name="expense_category">salary</field>
+    </record>
+    <record id="mkp_expense_config_2" model="mkp.event.budget.expense.config">
+        <field name="name">Rent</field>
+        <field name="expense_category">rent</field>
+    </record>
+    <record id="mkp_expense_config_3" model="mkp.event.budget.expense.config">
+        <field name="name">Transportation</field>
+        <field name="expense_category">transportation</field>
+    </record>
+    <record id="mkp_expense_config_4" model="mkp.event.budget.expense.config">
+        <field name="name">Preparation committee</field>
+        <field name="expense_category">prep_commitee</field>
+    </record>
+    <record id="mkp_expense_config_5" model="mkp.event.budget.expense.config">
+        <field name="name">Participant coordination</field>
+        <field name="expense_category">participant_coord</field>
+    </record>
+    <record id="mkp_expense_config_6" model="mkp.event.budget.expense.config">
+        <field name="name">Staff coordination</field>
+        <field name="expense_category">staff_coord</field>
+    </record>
+    <record id="mkp_expense_config_7" model="mkp.event.budget.expense.config">
+        <field name="name">Pre-staff</field>
+        <field name="expense_category">pre_staff</field>
+    </record>
+    <record id="mkp_expense_config_8" model="mkp.event.budget.expense.config">
+        <field name="name">Come-back evening</field>
+        <field name="expense_category">comeback</field>
+    </record>
+    <record id="mkp_expense_config_9" model="mkp.event.budget.expense.config">
+        <field name="name">PIS</field>
+        <field name="expense_category">pis</field>
+    </record>
+    <record id="mkp_expense_config_10" model="mkp.event.budget.expense.config">
+        <field name="name">Ordinary materials</field>
+        <field name="expense_category">ordinary_materials</field>
+    </record>
+    <record id="mkp_expense_config_11" model="mkp.event.budget.expense.config">
+        <field name="name">Container</field>
+        <field name="expense_category">container</field>
+    </record>
+    <record id="mkp_expense_config_12" model="mkp.event.budget.expense.config">
+        <field name="name">Sweat</field>
+        <field name="expense_category">sweat</field>
+    </record>
+    <record id="mkp_expense_config_13" model="mkp.event.budget.expense.config">
+        <field name="name">Exceptional materials</field>
+        <field name="expense_category">except_materials</field>
+    </record>
+    <record id="mkp_expense_config_14" model="mkp.event.budget.expense.config">
+        <field name="name">Other</field>
+        <field name="expense_category">other</field>
+    </record>
+</odoo>

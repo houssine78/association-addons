@@ -1,0 +1,117 @@
+<odoo>
+    <record id="mkp_event_budget_tree" model="ir.ui.view">
+        <field name="name">mkp.event.budget.tree</field>
+        <field name="model">mkp.event.budget</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="mkp_event_id"/>
+                <field name="participant_achieved"/>
+                <field name="staff_achieved"/>
+                <field name="revenues_achieved"/>
+                <field name="expenses_achieved"/>
+                <field name="result_achieved"/>
+                <field name="state"/>
+                <field name="company_currency_id" column_invisible="True"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="mkp_event_budget_form" model="ir.ui.view">
+        <field name="name">mkp.event.budget.form</field>
+        <field name="model">mkp.event.budget</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <group>
+                        <group string="General Information">
+                            <field name="name"/>
+                            <field name="mkp_event_id"/>
+                            <field name="analytic_tag_ids" widget="many2many_tags" readonly="True"/>
+                            <field name="event_type"/>
+                            <field name="participation_fee"/>
+                            <field name="staff_fee"/>
+                            <field name="mkpi_contribution"/>
+                        </group>
+                        <group string="Salary Information">
+                            <field name="co_leader_salary"/>
+                            <field name="full_leader_salary"/>
+                            <field name="fiscal_and_social_coeff"/>
+                        </group>
+                    </group>
+	                <group string="Budget Result">
+	                    <group string="Budgeted">
+	                        <field name="revenues_budgeted"/>
+                            <field name="expenses_budgeted"/>
+                            <field name="result_budgeted"/>
+	                    </group>
+	                    <group string="Achieved">
+	                        <field name="revenues_achieved"/>
+			                <field name="expenses_achieved"/>
+			                <field name="result_achieved"/>
+	                    </group>
+	                </group>
+	                <group string="Participant Revenues">
+                        <group string="Budgeted">
+                            <field name="participant_expected"/>
+                            <field name="participant_grant_budgeted"/>
+                            <field name="participant_revenues_budgeted"/>
+                        </group>
+	                    <group string="Achieved">
+	                        <field name="participant_achieved"/>
+                            <field name="participant_grant_achieved"/>
+                            <field name="participant_revenues_achieved"/>
+                        </group>
+	                </group>
+	                <group string="Staff Revenues">
+                        <group string="Budgeted">
+                            <field name="staff_expected"/>
+                            <field name="staff_grant_budgeted"/>
+                            <field name="staff_revenues_budgeted"/>
+                        </group>
+                        <group string="Achieved">
+                            <field name="staff_achieved"/>
+                            <field name="staff_grant_achieved"/>
+                            <field name="staff_revenues_achieved"/>
+                        </group>
+                    </group>
+	                <group string="Leaders">
+						<group string="Planned">
+                            <field name="co_leader_budgeted"/>
+                            <field name="full_leader_budgeted"/>
+						</group>
+						<group string="Achieved">
+                            <field name="co_leader_achieved"/>
+                            <field name="full_leader_achieved"/>
+						</group>
+                   </group>
+                   <group string="Expenses Summary">
+                        <group string="Budgeted">
+                            <field name="salary_budgeted"/>
+                            <field name="mkpi_contribution_budgeted"/>
+                        </group>
+                        <group string="Achieved">
+                            <field name="salary_achieved"/>
+                            <field name="mkpi_contribution_achieved"/>
+                        </group>
+                   </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_mkp_event_budget" model="ir.actions.act_window">
+        <field name="name">MKP Event Budget</field>
+        <field name="res_model">mkp.event.budget</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="mkp_event_budget_tree"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a MKP Event Budget
+          </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,14 @@
+<odoo>
+    <record id="mkp_event_admin_group" model="res.groups">
+        <field name="name">MKP Event Administrator</field>
+    </record>
+    <record id="mkp_event_coordinator_group" model="res.groups">
+        <field name="name">MKP Event Coordinator</field>
+    </record>
+    <record id="mkp_event_treasurer_group" model="res.groups">
+        <field name="name">MKP Event Treasurer</field>
+    </record>
+    <record id="mkp_event_staff_group" model="res.groups">
+        <field name="name">MKP Event staff</field>
+    </record>
+</odoo>

@@ -1,0 +1,58 @@
+<odoo>
+    <record id="mkp_event_subscription_tree" model="ir.ui.view">
+        <field name="name">mkp.event.subscription.tree</field>
+        <field name="model">mkp.event.subscription</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="mkp_event_id"/>
+                <field name="partner_id"/>
+                <field name="subscription_type"/>
+                <field name="subscription_amount"/>
+                <field name="grant" optional="hide" groups="mkp_event.mkp_event_admin_group"/>
+                <field name="grant_amount" optional="hide" groups="mkp_event.mkp_event_admin_group"/>
+                <field name="state"/>
+                <field name="company_currency_id" column_invisible="True"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="mkp_event_subscription_form" model="ir.ui.view">
+        <field name="name">mkp.event.subscription.form</field>
+        <field name="model">mkp.event.subscription</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+	                <group>
+	                    <group>
+	                        <field name="mkp_event_id"/>
+			                <field name="partner_id"/>
+			                <field name="subscription_type"/>
+	                    </group>
+	                    <group>
+	                        <field name="product_id"/>
+			                <field name="subscription_amount"/>
+			                <field name="grant" groups="mkp_event.mkp_event_admin_group"/>
+			                <field name="grant_amount" invisible="grant == False" groups="mkp_event.mkp_event_admin_group"/>
+			                <field name="amount_due" groups="mkp_event.mkp_event_admin_group"/>
+	                    </group>
+	                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_mkp_event_subscription" model="ir.actions.act_window">
+        <field name="name">MKP Event Subscription</field>
+        <field name="res_model">mkp.event.subscription</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="mkp_event_subscription_tree"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a MKP event subscription
+          </p>
+        </field>
+    </record>
+</odoo>
