@@ -1,16 +1,20 @@
 from odoo import Command, models, fields
 import re
 
+
 class InvoiceFromBankStatementLineWizard(models.TransientModel):
     _name = 'invoice.from.statement.line'
     _description = 'Create invoice from bank statement line'
 
     def _default_bank_statement_line_ids(self):
-        bankStatementLine = self.env['account.bank.statement.line'].sudo()
-        bank_statement_line_ids = self.env.context.get('active_ids', [])
-        bank_statement_lines = bankStatementLine.browse(bank_statement_line_ids)
+        bankStatLine = self.env['account.bank.statement.line'].sudo()
+        bank_stat_line_ids = self.env.context.get('active_ids', [])
+        bank_stat_lines = bankStatLine.browse(bank_stat_line_ids)
 
-        return [Command.link(bank_statement_line.id) for bank_statement_line in bank_statement_lines]
+        return ([
+            Command.link(bank_stat_line.id)
+            for bank_stat_line in bank_stat_lines
+            ])
 
     invoice_date = fields.Date()
     product_id = fields.Many2one(
@@ -34,9 +38,11 @@ class InvoiceFromBankStatementLineWizard(models.TransientModel):
     def create_transition_model(self):
         resPartner = self.env['res.partner']
         statLineInvoice = self.env['statement.line.to.invoice']
-         
+
         for statement_line in self.bank_statement_line_ids:
-            stat_line_id = statLineInvoice.search([('bank_statement_line_id', '=', statement_line.id)])
+            stat_line_id = statLineInvoice.search([
+                ('bank_statement_line_id', '=', statement_line.id)
+            ])
 
             if stat_line_id:
                 continue
@@ -46,7 +52,7 @@ class InvoiceFromBankStatementLineWizard(models.TransientModel):
 
             email = notes_list[0].strip()
             name = notes_list[1].strip()
-            
+
             partners = resPartner.search([('email', '=', email)])
             partner_id = False
             if not partners:
@@ -58,7 +64,7 @@ class InvoiceFromBankStatementLineWizard(models.TransientModel):
                 partner_id = partners.filtered(lambda r: r.is_company)
                 if not partner_id:
                     partner_id = partners
-                 
+
             vals = {
                 'email': email,
                 'name': name,

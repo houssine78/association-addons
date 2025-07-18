@@ -30,7 +30,7 @@ class StatementLineToInvoice(models.Model):
     bank_statement_line_id = fields.Many2one(
         "account.bank.statement.line",
         string="Statement line",
-        required = True
+        required=True
     )
     account_analytic_tag_id = fields.Many2one(
         "account.analytic.tag",
@@ -43,7 +43,7 @@ class StatementLineToInvoice(models.Model):
         ('draft', 'Draft'),
         ('invoiced', 'Invoice'),
         ('error', 'error')],
-        required = True
+        required=True
     )
     error_msg = fields.Char(string="Error message")
 
@@ -73,22 +73,21 @@ class StatementLineToInvoice(models.Model):
         if self.amount > self.product_id.lst_price:
             line_vals['price_unit'] = self.amount
 
-        line = moveLine.create(line_vals)    
         self.write({"state": "invoiced", "invoice_id": move.id})
 
     def action_assign_partner(self):
         self.ensure_one()
-        
+
         resPartner = self.env['res.partner']
         partners = resPartner.search([('email', '=', self.email)])
-        
+
         partner_id = False
         if not partners:
             partner_vals = {
-            'email': self.email,
-            'name': self.name,
-            'is_company': False
-        }
+                'email': self.email,
+                'name': self.name,
+                'is_company': False
+            }
             partner_id = resPartner.create(partner_vals)
 
         elif len(partners) == 1:
@@ -98,4 +97,4 @@ class StatementLineToInvoice(models.Model):
             if not partner_id:
                 partner_id = partners
 
-        self.partner_id = partner_id     
+        self.partner_id = partner_id
