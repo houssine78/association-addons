@@ -1,0 +1,14 @@
+<odoo>
+    <record id="view_hr_expense_form_mkp" model="ir.ui.view">
+	    <field name="name">hr.expense.form.mkp</field>
+	    <field name="model">hr.expense</field>
+	    <field name="inherit_id" ref="hr_expense.hr_expense_view_form"/>
+	    <field name="arch" type="xml">
+	       <field name="product_uom_category_id" position="after">
+	           <field name="is_mkp_event_expense"/>
+	           <field name="mkp_event_budget_id" option="nocreate" invisible="is_mkp_event_expense == False"/>
+	           <field name="expense_tag_id"  invisible="is_mkp_event_expense == False" widget="selection"/>
+	       </field>
+	    </field>
+    </record>
+</odoo>

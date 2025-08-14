@@ -17,6 +17,7 @@
         "views/mkp_event_budget_expense_config_views.xml",
         "views/mkp_event_subscription_views.xml",
         "views/hr_expense_sheet_views.xml",
+        "views/hr_expense_views.xml",
         "views/product_views.xml",
         "views/res_partner_views.xml",
         "views/mkp_event_menuitem.xml",

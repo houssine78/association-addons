@@ -26,8 +26,27 @@
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
-                    <group>
-                        <group string="General Information">
+                     <div class="oe_button_box" name="button_box">
+                        <button name="action_open_account_moves"
+                            class="oe_stat_button"
+                            icon="fa-bars"
+                            type="object"
+                            groups="account.group_account_invoice">
+                            <div class="o_stat_info">
+                                <field name="nb_account_move" class="o_stat_value"/>
+                                <span class="o_stat_text">Event Bills</span>
+                            </div>
+                        </button>
+                        <button name="action_open_expense_view"
+                            class="oe_stat_button"
+                            icon="fa-file-text-o"
+                            type="object"
+                            invisible="nb_expense == 0">
+                            <field name="nb_expense" widget="statinfo" string="Expenses"/>
+                        </button>
+                    </div>
+                    <group string="General Information" col="8">
+                        <group string="Event Information">
                             <field name="name"/>
                             <field name="mkp_event_id"/>
                             <field name="analytic_tag_ids" widget="many2many_tags" readonly="True"/>
@@ -39,65 +58,75 @@
                         <group string="Salary Information">
                             <field name="co_leader_salary"/>
                             <field name="full_leader_salary"/>
-                            <field name="fiscal_and_social_coeff"/>
+                            <field name="fiscal_and_social_coeff" widget="percentage"/>
+                        </group>
+                        <group string="Leaders Planned">
+                            <field name="co_leader_budgeted"/>
+                            <field name="full_leader_budgeted"/>
+                        </group>
+                        <group string="Leaders Achieved">
+                            <field name="co_leader_achieved"/>
+                            <field name="full_leader_achieved"/>
                         </group>
                     </group>
-	                <group string="Budget Result">
-	                    <group string="Budgeted">
+	                <group string="Budget Summary" col="8">
+	                    <group string="Revenues Budgeted">
 	                        <field name="revenues_budgeted"/>
                             <field name="expenses_budgeted"/>
                             <field name="result_budgeted"/>
-	                    </group>
-	                    <group string="Achieved">
-	                        <field name="revenues_achieved"/>
-			                <field name="expenses_achieved"/>
-			                <field name="result_achieved"/>
-	                    </group>
-	                </group>
-	                <group string="Participant Revenues">
-                        <group string="Budgeted">
                             <field name="participant_expected"/>
                             <field name="participant_grant_budgeted"/>
                             <field name="participant_revenues_budgeted"/>
-                        </group>
-	                    <group string="Achieved">
-	                        <field name="participant_achieved"/>
-                            <field name="participant_grant_achieved"/>
-                            <field name="participant_revenues_achieved"/>
-                        </group>
-	                </group>
-	                <group string="Staff Revenues">
-                        <group string="Budgeted">
                             <field name="staff_expected"/>
                             <field name="staff_grant_budgeted"/>
                             <field name="staff_revenues_budgeted"/>
-                        </group>
-                        <group string="Achieved">
+	                    </group>
+	                    <group string="Revenues Achieved">
+	                        <field name="revenues_achieved"/>
+			                <field name="expenses_achieved"/>
+			                <field name="result_achieved"/>
+			                <field name="participant_achieved"/>
+                            <field name="participant_grant_achieved"/>
+                            <field name="participant_revenues_achieved"/>
                             <field name="staff_achieved"/>
                             <field name="staff_grant_achieved"/>
                             <field name="staff_revenues_achieved"/>
-                        </group>
-                    </group>
-	                <group string="Leaders">
-						<group string="Planned">
-                            <field name="co_leader_budgeted"/>
-                            <field name="full_leader_budgeted"/>
-						</group>
-						<group string="Achieved">
-                            <field name="co_leader_achieved"/>
-                            <field name="full_leader_achieved"/>
-						</group>
-                   </group>
-                   <group string="Expenses Summary">
-                        <group string="Budgeted">
-                            <field name="salary_budgeted"/>
-                            <field name="mkpi_contribution_budgeted"/>
-                        </group>
-                        <group string="Achieved">
-                            <field name="salary_achieved"/>
-                            <field name="mkpi_contribution_achieved"/>
-                        </group>
-                   </group>
+	                    </group>
+	                    <group string="Expenses Budgeted">
+	                       <field name="salary_budgeted"/>
+	                       <field name="rent_budgeted"/>
+	                       <field name="transportation_budgeted"/>
+	                       <field name="prep_commitee_budgeted"/>
+	                       <field name="participant_coord_budgeted"/>
+	                       <field name="staff_coord_budgeted"/>
+	                       <field name="pre_staff_budgeted"/>
+	                       <field name="comeback_budgeted"/>
+	                       <field name="pis_budgeted"/>
+	                       <field name="ordinary_materials_budgeted"/>
+	                       <field name="container_budgeted"/>
+	                       <field name="sweat_budgeted"/>
+	                       <field name="except_materials_budgeted"/>
+	                       <field name="other_budgeted"/>
+	                       <field name="mkpi_contribution_budgeted"/>
+	                    </group>
+	                    <group string="Expenses Achieved">
+	                       <field name="salary_expense"/>
+	                       <field name="rent_expense"/>
+	                       <field name="transportation_expense"/>
+	                       <field name="prep_commitee_expense"/>
+	                       <field name="participant_coord_expense"/>
+	                       <field name="staff_coord_expense"/>
+	                       <field name="pre_staff_expense"/>
+	                       <field name="comeback_expense"/>
+	                       <field name="pis_expense"/>
+	                       <field name="ordinary_materials_expense"/>
+	                       <field name="container_expense"/>
+	                       <field name="sweat_expense"/>
+	                       <field name="except_materials_expense"/>
+	                       <field name="other_expense"/>
+	                       <field name="mkpi_contribution_achieved"/>
+	                    </group>
+	                </group>
                 </sheet>
             </form>
         </field>

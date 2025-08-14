@@ -1,5 +1,6 @@
 from . import account_move
 from . import hr_expense_sheet
+from . import hr_expense
 from . import mkp_event
 from . import mkp_event_budget
 from . import mkp_event_subscription

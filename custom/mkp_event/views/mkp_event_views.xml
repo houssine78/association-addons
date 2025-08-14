@@ -68,7 +68,7 @@
                                 <list>
 	                                <field name="name"/>
 	                                <field name="leadership"/>
-	                                <field name="staff_count"/>
+	                                <field name="staff_count" width="130"/>
                                 </list>
                             </field>
                         </page>

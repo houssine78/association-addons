@@ -6,3 +6,6 @@ class HrExpenseSheet(models.Model):
 
     is_mkp_event_expense = fields.Boolean()
     mkp_event_budget_id = fields.Many2one("mkp.event.budget")
+    expense_tag_id = fields.Many2one(
+        "mkp.event.budget.expense.config"
+    )  # TODO remove this field

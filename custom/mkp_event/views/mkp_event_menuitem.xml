@@ -18,8 +18,9 @@
         <menuitem id="menu_mkp_finance" name="MKP Finances" sequence="4">
             <menuitem id="menu_action_mkp_event_budget" action="action_mkp_event_budget" sequence="1"/>
             <menuitem id="menu_action_mkp_event_out_invoices" action="action_move_out_invoice_mkp_event" sequence="2"/>
-            <menuitem id="menu_action_non_mkp_event_out_invoices" action="action_move_out_invoice_non_mkp_event" sequence="3"/>
-            <menuitem id="menu_action_hr_expense_sheet_mkp_event" action="action_hr_expense_sheet_mkp" sequence="4"/>
+            <menuitem id="menu_action_mkp_event_in_invoices" action="action_move_in_invoice_mkp_event" sequence="3"/>
+            <menuitem id="menu_action_non_mkp_event_out_invoices" action="action_move_out_invoice_non_mkp_event" sequence="4"/>
+            <menuitem id="menu_action_hr_expense_sheet_mkp_event" action="action_hr_expense_sheet_mkp" sequence="5"/>
         </menuitem>
         <menuitem id="menu_mkp_config" name="Configuration" sequence="5">
             <menuitem id="menu_action_mkp_event_budget_expense_config" action="action_mkp_event_budget_expense_config" sequence="1"/>
