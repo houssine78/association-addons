@@ -6,10 +6,11 @@
 	        <form string="Set Analytic Tag">
 	            <group>
 	                <field name="account_analytic_tag" />
+	                <field name="analytic_distribution" widget="analytic_distribution"/>
 	                <field name="account_move_ids" widget="many2many_tags"/>
 	            </group>
 	            <footer>
-	                <button name="set_analytic_tag" string="Set Analytic Tag" type="object" class="btn-primary"/>
+	                <button name="set_analytic_tag" string="Apply" type="object" class="btn-primary"/>
 	                <button string="Cancel" class="btn-secondary" special="cancel"/>
 	            </footer>
 	        </form>

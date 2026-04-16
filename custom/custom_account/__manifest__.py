@@ -3,14 +3,16 @@
 {
     "name": "Custom account",
     "summary": "customisation for accounting",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.0.1",
     "category": "Account",
     "author": "Open Architects Consulting SRL, Houssine Bakkali",
     "license": "AGPL-3",
     "depends": [
         "account",
+        "account_analytic_tag",
         "account_statement_base",
-        "account_usability"
+        "account_usability",
+        "analytic",
     ],
     "data": [
         "security/ir.model.access.csv",
