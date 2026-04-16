@@ -1,4 +1,5 @@
-from odoo import api,Command, models, fields
+from odoo import Command, models, fields
+
 
 class CreateInternalUserWizard(models.TransientModel):
     _name = 'create.internal.user.wizard'
@@ -30,7 +31,7 @@ class CreateInternalUserWizard(models.TransientModel):
                 'partner_id': contact.id,
                 'company_id': self.env.company.id,
                 'company_ids': [(6, 0, self.env.company.ids)],
-                'groups_id': [(5),(4, group_user.id)]
+                'groups_id': [(5), (4, group_user.id)]
             }
             user = user_model.create(user_values)
             if self.create_employee:

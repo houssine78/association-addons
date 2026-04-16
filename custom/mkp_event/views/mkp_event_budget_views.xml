@@ -5,7 +5,7 @@
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
-                <field name="mkp_event_id"/>
+                <field name="mkp_event_ids"/>
                 <field name="participant_achieved"/>
                 <field name="staff_achieved"/>
                 <field name="revenues_achieved"/>
@@ -48,7 +48,7 @@
                     <group string="General Information" col="8">
                         <group string="Event Information">
                             <field name="name"/>
-                            <field name="mkp_event_id"/>
+                            <field name="mkp_event_ids" widget="many2many_tags"/>
                             <field name="analytic_tag_ids" widget="many2many_tags" readonly="True"/>
                             <field name="event_type"/>
                             <field name="participation_fee"/>

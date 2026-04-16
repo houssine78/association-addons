@@ -44,6 +44,7 @@
 	                        <field name="staff_product_id"/>
 	                        <field name="participation_fee"/>
 	                        <field name="staff_fee"/>
+	                        <field name="analytic_distribution_id" widget="many2many_tags"/>
 	                        <field name="analytic_tag_ids" widget="many2many_tags"/>
 	                        <field name="company_currency_id" invisible="True"/>
                         </group>

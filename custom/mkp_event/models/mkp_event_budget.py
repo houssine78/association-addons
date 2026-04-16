@@ -3,11 +3,14 @@ from odoo import api, fields, models, _
 
 class MKPEventBudget(models.Model):
     _name = "mkp.event.budget"
+    _description = "MKP Event Budget"
+
+    # def get_event_type(self):
 
     name = fields.Char()
-    mkp_event_id = fields.Many2one("mkp.event")
-    event_type = fields.Selection(related="mkp_event_id.event_type")
-    analytic_tag_ids = fields.Many2many(related="mkp_event_id.analytic_tag_ids")
+    mkp_event_ids = fields.One2many("mkp.event", "mkp_event_budget_id")
+    event_type = fields.Selection(related="mkp_event_ids.event_type")
+    analytic_tag_ids = fields.Many2many(related="mkp_event_ids.analytic_tag_ids")
     revenues_budgeted = fields.Monetary(
         compute="_compute_revenues_budgeted", currency_field="company_currency_id"
     )
@@ -32,7 +35,7 @@ class MKPEventBudget(models.Model):
         store=True,
     )
     participation_fee = fields.Monetary(
-        related="mkp_event_id.participation_fee", currency_field="company_currency_id"
+        related="mkp_event_ids.participation_fee", currency_field="company_currency_id"
     )
     participant_expected = fields.Integer()
     participant_achieved = fields.Integer()
@@ -53,7 +56,7 @@ class MKPEventBudget(models.Model):
         store=True,
     )
     staff_fee = fields.Monetary(
-        related="mkp_event_id.staff_fee", currency_field="company_currency_id"
+        related="mkp_event_ids.staff_fee", currency_field="company_currency_id"
     )
     staff_expected = fields.Integer()
     staff_achieved = fields.Integer()
@@ -215,7 +218,7 @@ class MKPEventBudget(models.Model):
     )
     company_currency_id = fields.Many2one(
         string="Company Currency",
-        related="mkp_event_id.company_currency_id",
+        related="mkp_event_ids.company_currency_id",
         readonly=True,
     )
 
@@ -229,11 +232,11 @@ class MKPEventBudget(models.Model):
         for budget in self:
             budget.nb_account_move = len(budget.account_move_ids)
 
-    @api.onchange("mkp_event_id")
-    def _onchange_mkp_event_id(self):
+    @api.onchange("mkp_event_ids")
+    def _onchange_mkp_event_ids(self):
         for budget in self:
-            if budget.mkp_event_id:
-                budget.name = "Budget " + budget.mkp_event_id.name
+            if budget.mkp_event_ids:
+                budget.name = "Budget " + budget.mkp_event_ids[0].name
 
     def _compute_revenues_budgeted(self):
         for budget in self:
@@ -380,35 +383,34 @@ class MKPEventBudget(models.Model):
             )
 
     @api.depends(
-        "mkp_event_id",
-        "mkp_event_id.staff_subscription",
-        "mkp_event_id.staff_subscription.grant",
-        "mkp_event_id.staff_subscription.state",
-        "mkp_event_id.staff_subscription.grant_amount",
-        "mkp_event_id.participant_subscription",
-        "mkp_event_id.participant_subscription.grant",
-        "mkp_event_id.participant_subscription.state",
-        "mkp_event_id.participant_subscription.grant_amount",
+        "mkp_event_ids",
+        "mkp_event_ids.staff_subscription",
+        "mkp_event_ids.staff_subscription.grant",
+        "mkp_event_ids.staff_subscription.state",
+        "mkp_event_ids.staff_subscription.grant_amount",
+        "mkp_event_ids.participant_subscription",
+        "mkp_event_ids.participant_subscription.grant",
+        "mkp_event_ids.participant_subscription.state",
+        "mkp_event_ids.participant_subscription.grant_amount",
     )
     def _compute_grant_achieved(self):
         for budget in self:
-            mkp_event = budget.mkp_event_id
-
-            grant_staff_subs = mkp_event.staff_subscription.filtered(
-                lambda sub: sub.grant and sub.state == "registered"
-            )
-            part_staff_subs = mkp_event.participant_subscription.filtered(
-                lambda sub: sub.grant and sub.state == "registered"
-            )
-
             grant_staff_amount = 0
             grant_part_amount = 0
 
-            for grant_staff_sub in grant_staff_subs:
-                grant_staff_amount += grant_staff_sub.grant_amount
+            for mkp_event in budget.mkp_event_ids:
+                grant_staff_subs = mkp_event.staff_subscription.filtered(
+                    lambda sub: sub.grant and sub.state == "accepted"
+                )
+                part_staff_subs = mkp_event.participant_subscription.filtered(
+                    lambda sub: sub.grant and sub.state == "accepted"
+                )
 
-            for part_staff_sub in part_staff_subs:
-                grant_part_amount += part_staff_sub.grant_amount
+                for grant_staff_sub in grant_staff_subs:
+                    grant_staff_amount += grant_staff_sub.grant_amount
+
+                for part_staff_sub in part_staff_subs:
+                    grant_part_amount += part_staff_sub.grant_amount
 
             budget.staff_grant_achieved = grant_staff_amount
             budget.participant_grant_achieved = grant_part_amount

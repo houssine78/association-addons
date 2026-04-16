@@ -3,6 +3,7 @@ from odoo import api, fields, models
 
 class MKPEvent(models.Model):
     _name = "mkp.event"
+    _description = "MKP Event"
 
     name = fields.Char(required=True)
     start_date = fields.Date(required=True)
@@ -22,6 +23,7 @@ class MKPEvent(models.Model):
     place = fields.Many2one(
         "res.partner", domain="[('is_initiation_place', '=', True)]", required=True
     )
+    analytic_distribution_id = fields.Many2one("analytic.distribution")
     analytic_tag_ids = fields.Many2many("account.analytic.tag")
     participation_fee = fields.Monetary(
         required=True, currency_field="company_currency_id"
@@ -54,6 +56,7 @@ class MKPEvent(models.Model):
         ],
         default="draft",
     )
+    mkp_event_budget_id = fields.Many2one("mkp.event.budget")
     company_id = fields.Many2one(
         "res.company", required=True, index=True, default=lambda self: self.env.company
     )

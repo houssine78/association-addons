@@ -3,6 +3,7 @@ from odoo import fields, models
 
 class MKPEventBudgetExpenseConfig(models.Model):
     _name = "mkp.event.budget.expense.config"
+    _description = "MKP Event Budget Expense Config"
 
     name = fields.Char(required=True)
     expense_category = fields.Selection(

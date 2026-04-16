@@ -22,6 +22,13 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <button name="action_draft" string="Draft" type="object" invisible="state in ['draft', ]"/><!-- 'transfered' -->
+                    <button name="action_register" string="Register" type="object" invisible="state in ['registered', 'accepted', 'waiting', 'transfered', 'cancelled']"/>
+                    <button name="action_accept" string="Accept" type="object" invisible="state in ['draft', 'accepted', 'cancelled', 'transfered']"/>
+                    <button name="action_wait" string="Waiting list" type="object" invisible="state in ['draft', 'waiting', 'transfered', 'cancelled']"/>
+                    <!-- <button name="action_transfer" string="Transfer" type="object" invisible="state == 'transfered'"/> create wizard--> 
+                    <button name="action_cancel" string="Cancel" type="object" invisible="state in ['cancelled','transfered']"/>
+                    <button name="action_create_invoice" string="Create invoice" class="oe_highlight" type="object" invisible="state != 'accepted'"/>
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
