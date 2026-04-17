@@ -18,6 +18,7 @@
         "security/ir.model.access.csv",
         "views/bank_statement_line.xml",
         "views/statement_line_to_invoice_views.xml",
+        "views/account_move_views.xml",
         "wizard/set_analytic_tag_wizard.xml",
         "wizard/create_invoice_from_bank_statement_wizard.xml"
     ],
